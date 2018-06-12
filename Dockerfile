@@ -1,10 +1,6 @@
-from jenkins
+FROM jenkins
 
 USER root
-
-# Node.js
-# We need to use a later version of Node than is currently available in the Ubuntu package manager (2015-06-17)
-RUN curl -sL https://deb.nodesource.com/setup | bash -
 
 # Install git, maven, default-jdk, nodejs
 # The tar and bzip2 packages are required for Phantom.js installation in npm: https://github.com/Medium/phantomjs/issues/326
@@ -25,6 +21,8 @@ RUN \
 # Install Docker (to be used as a client only)
 RUN wget -qO- https://get.docker.com/ | sh
 RUN usermod -aG docker jenkins
+
+RUN apt-get install docker-compose -y
 
 USER jenkins
 
